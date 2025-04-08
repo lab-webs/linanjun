@@ -40,6 +40,19 @@
             font-size: 1.1rem;
         }
 
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 5px;
+            background-color: white;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
         /* 主体内容 */
         .container {
             max-width: 1200px;
@@ -98,6 +111,32 @@
                 flex-direction: column;
                 text-align: center;
                 gap: 1rem;
+                display: none;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 1.2rem;
+                right: 1rem;
+                z-index: 1100;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
             }
 
             .header h1 {
@@ -115,6 +154,7 @@
             .research-item {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 1rem;
             }
 
             .research-icon {
@@ -125,23 +165,22 @@
                 font-size: 1rem;
             }
 
-            /* 调整图片大小 */
             .header img {
                 width: 100%;
                 max-width: 150px;
                 height: auto;
                 margin: 0 auto;
             }
-
-            .research-item {
-                gap: 1rem;
-                margin-bottom: 1.5rem;
-            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <div class="nav-links">
             <a href="#about">关于</a>
             <a href="#research">研究</a>
@@ -222,5 +261,12 @@
             </div>
         </section>
     </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
